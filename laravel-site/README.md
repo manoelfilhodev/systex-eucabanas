@@ -19,6 +19,7 @@ Usuario local criado pela migration de compatibilidade:
 
 - `docs/agents/atlas-validation.md`
 - `docs/migration-map.md`
+- `docs/homologation-checklist.md`
 
 ## Observacao
 

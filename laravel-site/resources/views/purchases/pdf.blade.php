@@ -5,20 +5,20 @@
     <style>
         @page { margin: 42px 52px 36px; }
         body {
-            color: #56616d;
+            color: #2A211A;
             font-family: DejaVu Sans, sans-serif;
             font-size: 13px;
             line-height: 1.45;
         }
         .top {
-            color: #000;
+            color: #5F5448;
             font-size: 9px;
             margin-bottom: 46px;
             text-align: center;
         }
         .top .date { float: left; }
         h1 {
-            color: #5e6873;
+            color: #2A211A;
             font-size: 16px;
             margin: 0 0 38px;
             text-transform: uppercase;
@@ -28,30 +28,30 @@
             width: 100%;
         }
         th {
-            color: #aaa;
+            color: #8A6733;
             font-size: 13px;
             font-weight: bold;
             padding: 0 14px 16px;
             text-align: left;
         }
         td {
-            border-top: 1.2px solid #4e5965;
+            border-top: 1.2px solid #8A6733;
             padding: 16px 14px;
             vertical-align: top;
         }
         .product {
-            color: #56616d;
+            color: #181512;
             font-size: 13px;
             text-transform: uppercase;
         }
         .desc {
-            color: #56616d;
+            color: #5F5448;
             font-size: 10.5px;
             margin-top: 6px;
             text-transform: uppercase;
         }
         .family {
-            color: #56616d;
+            color: #2A211A;
             text-transform: uppercase;
             width: 118px;
         }
@@ -68,7 +68,7 @@
             page-break-after: auto;
         }
         .empty {
-            border-top: 1.2px solid #4e5965;
+            border-top: 1.2px solid #8A6733;
             padding: 18px 14px;
         }
     </style>

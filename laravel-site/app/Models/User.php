@@ -35,6 +35,20 @@ class User extends Authenticatable
         return (string) $this->senha;
     }
 
+    public function getRememberToken(): ?string
+    {
+        return null;
+    }
+
+    public function setRememberToken($value): void
+    {
+    }
+
+    public function getRememberTokenName(): string
+    {
+        return '';
+    }
+
     public function getNameAttribute(): string
     {
         return (string) ($this->attributes['nome'] ?? $this->attributes['name_user'] ?? '');
