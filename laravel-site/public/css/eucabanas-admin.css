@@ -11,6 +11,8 @@
     --euca-green: #1e2d24;
     --euca-border: rgba(198, 165, 107, .24);
     --euca-shadow: 0 24px 70px rgba(0, 0, 0, .34);
+    --euca-font-body: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --euca-font-display: "Space Grotesk", Inter, "Segoe UI", sans-serif;
 }
 
 body.euca-admin-shell {
@@ -20,8 +22,9 @@ body.euca-admin-shell {
         radial-gradient(circle at 90% 12%, rgba(30, 45, 36, .56), transparent 34%),
         linear-gradient(135deg, var(--euca-bg) 0%, var(--euca-surface) 52%, var(--euca-bg) 100%);
     color: var(--euca-text);
-    font-family: Nunito, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--euca-font-body);
     line-height: 1.5;
+    text-rendering: geometricPrecision;
 }
 
 .euca-topbar {
@@ -77,6 +80,7 @@ body.euca-admin-shell {
     align-items: center;
     gap: 9px;
     font-weight: 700;
+    font-family: var(--euca-font-display);
     transition: .2s ease;
     border: 1px solid transparent;
 }
@@ -113,12 +117,14 @@ body.euca-admin-shell {
     display: block;
     color: var(--euca-muted);
     font-size: 12px;
+    font-family: var(--euca-font-display);
     text-transform: uppercase;
-    letter-spacing: .08em;
+    letter-spacing: 0;
 }
 
 .euca-user-copy strong {
     color: var(--euca-text);
+    font-family: var(--euca-font-display);
     font-size: 14px;
 }
 
@@ -132,6 +138,7 @@ body.euca-admin-shell {
     display: flex;
     align-items: center;
     gap: 8px;
+    font-family: var(--euca-font-display);
     font-weight: 700;
     transition: .2s ease;
 }
@@ -174,17 +181,18 @@ body.euca-admin-shell {
 .activity-action {
     color: var(--euca-gold-light) !important;
     font-size: 12px;
+    font-family: var(--euca-font-display);
     font-weight: 800;
-    letter-spacing: .08em;
+    letter-spacing: 0;
     margin-bottom: 5px;
     text-transform: uppercase;
 }
 
 .page-title {
     color: var(--euca-text);
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--euca-font-display);
     font-size: 28px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.1;
     margin: 0;
 }
@@ -275,6 +283,7 @@ small.text-muted,
 
 .metric-number {
     color: var(--euca-text);
+    font-family: var(--euca-font-display);
     font-size: 48px;
     font-weight: 800;
     line-height: 1;
@@ -282,6 +291,7 @@ small.text-muted,
 
 .metric-label {
     color: var(--euca-muted);
+    font-family: var(--euca-font-display);
     font-size: 12px;
     letter-spacing: 0;
     margin-top: 8px;
@@ -305,6 +315,7 @@ small.text-muted,
     align-items: center;
     color: var(--euca-text);
     display: inline-flex;
+    font-family: var(--euca-font-display);
     font-weight: 800;
     gap: 10px;
 }
@@ -318,6 +329,7 @@ small.text-muted,
 
 .status-count {
     color: var(--euca-text);
+    font-family: var(--euca-font-display);
     font-size: 24px;
     font-weight: 800;
 }
@@ -373,8 +385,9 @@ small.text-muted,
 .table thead th {
     border-bottom: 1px solid var(--euca-border) !important;
     color: var(--euca-gold-light) !important;
+    font-family: var(--euca-font-display);
     font-size: 12px;
-    letter-spacing: .06em;
+    letter-spacing: 0;
     text-transform: uppercase;
     white-space: nowrap;
 }
@@ -426,6 +439,7 @@ small.text-muted,
 .form-label,
 label {
     color: var(--euca-text);
+    font-family: var(--euca-font-display);
     font-weight: 700;
 }
 
@@ -454,6 +468,7 @@ label {
 
 .btn {
     border-radius: 10px;
+    font-family: var(--euca-font-display);
     font-weight: 800;
 }
 
@@ -567,6 +582,27 @@ label {
     --bs-pagination-disabled-bg: rgba(42, 36, 30, .68);
     --bs-pagination-disabled-border-color: rgba(198, 165, 107, .12);
     --bs-pagination-disabled-color: rgba(184, 170, 150, .52);
+}
+
+.euca-pagination {
+    margin-top: 18px;
+}
+
+.euca-pagination nav {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.euca-pagination .pagination {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-bottom: 0;
+}
+
+.euca-pagination svg {
+    height: 18px;
+    width: 18px;
 }
 
 @media (max-width: 992px) {

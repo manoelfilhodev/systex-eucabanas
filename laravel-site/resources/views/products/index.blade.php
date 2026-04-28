@@ -18,8 +18,9 @@
 </div>
 
 <div class="card">
-    <div class="card-body table-responsive">
-        <table class="table table-striped align-middle">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
             <thead>
                 <tr><th>Nome</th><th>Família</th><th>Cadastro</th><th>Preço</th><th>Quantidade</th><th>Validade</th><th>Vence em</th><th>Criticidade</th><th>Status</th><th></th></tr>
             </thead>
@@ -76,9 +77,13 @@
                 </tr>
             @endforelse
             </tbody>
-        </table>
+            </table>
+        </div>
+
         @if (method_exists($products, 'links'))
-            {{ $products->links() }}
+            <div class="euca-pagination">
+                {{ $products->links('pagination::bootstrap-5') }}
+            </div>
         @endif
     </div>
 </div>
