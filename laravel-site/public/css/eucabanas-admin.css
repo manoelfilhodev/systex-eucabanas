@@ -461,3 +461,702 @@ body.systex-shell {
         padding: 18px;
     }
 }
+/* =========================================================
+   EUCABANAS LOGIN PREMIUM - FINAL
+========================================================= */
+
+:root {
+    --euca-bg: #0f0d0b;
+    --euca-panel: #11100d;
+    --euca-gold: #c6a56b;
+    --euca-gold-light: #d8b97a;
+    --euca-text: #f5f1e8;
+    --euca-muted: #b8aa96;
+    --euca-border: rgba(198, 165, 107, .28);
+}
+
+body.euca-login-page {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--euca-bg);
+    color: var(--euca-text);
+}
+
+.euca-login-wrapper {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 47% 53%;
+    background: var(--euca-bg);
+}
+
+.euca-login-hero {
+    position: relative;
+    background-image: url('/assets/images/eucabanas-login-bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.euca-login-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .18);
+}
+
+.euca-login-panel {
+    position: relative;
+    background:
+        radial-gradient(circle at 35% 20%, rgba(198, 165, 107, .08), transparent 28%),
+        linear-gradient(135deg, #15130f 0%, #0f0d0b 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 70px;
+}
+
+.euca-login-panel::before {
+    content: "";
+    position: absolute;
+    left: -110px;
+    top: 0;
+    width: 220px;
+    height: 100%;
+    background: #11100d;
+    transform: skewX(-10deg);
+    border-left: 2px solid rgba(198, 165, 107, .38);
+    box-shadow: -18px 0 45px rgba(0, 0, 0, .45);
+}
+
+.euca-login-card {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 520px;
+}
+
+.euca-login-brand {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.euca-login-logo {
+    width: 235px;
+    max-width: 70%;
+}
+
+.euca-login-header {
+    text-align: center;
+    margin-bottom: 34px;
+}
+
+.euca-login-header h1 {
+    margin: 0 0 8px;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--euca-text);
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.euca-login-header p {
+    margin: 0;
+    color: var(--euca-muted);
+    font-size: 16px;
+}
+
+.euca-form-group {
+    margin-bottom: 22px;
+}
+
+.euca-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--euca-text);
+    font-weight: 500;
+}
+
+.euca-input-icon {
+    position: relative;
+}
+
+.euca-input-icon svg {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 21px;
+    height: 21px;
+    color: var(--euca-text);
+    opacity: .9;
+}
+
+.euca-input-icon .euca-eye {
+    left: auto;
+    right: 18px;
+    color: var(--euca-gold-light);
+}
+
+.euca-input-icon input {
+    width: 100%;
+    height: 58px;
+    border-radius: 8px;
+    border: 1px solid var(--euca-border);
+    background: rgba(255, 255, 255, .025);
+    color: var(--euca-text);
+    padding: 0 52px;
+    font-size: 15px;
+    outline: none;
+}
+
+.euca-input-icon input:focus {
+    border-color: var(--euca-gold);
+    box-shadow: 0 0 0 3px rgba(198, 165, 107, .10);
+}
+
+.euca-login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0 24px;
+}
+
+.euca-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--euca-text);
+}
+
+.euca-checkbox input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--euca-gold);
+}
+
+.euca-forgot {
+    color: var(--euca-gold-light);
+    text-decoration: none;
+}
+
+.euca-login-button,
+.euca-login-secondary {
+    width: 100%;
+    height: 58px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.euca-login-button {
+    border: none;
+    color: #1a1208;
+    background: linear-gradient(135deg, #c6974d, #e0bd78);
+    box-shadow: 0 14px 35px rgba(198, 165, 107, .18);
+}
+
+.euca-login-button svg,
+.euca-login-secondary svg {
+    width: 22px;
+    height: 22px;
+}
+
+.euca-divider {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 28px 0;
+    color: var(--euca-muted);
+}
+
+.euca-divider span {
+    flex: 1;
+    height: 1px;
+    background: rgba(198, 165, 107, .22);
+}
+
+.euca-login-secondary {
+    background: transparent;
+    border: 1px solid var(--euca-gold);
+    color: var(--euca-text);
+}
+
+.euca-login-footer {
+    margin-top: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--euca-gold-light);
+    font-size: 14px;
+}
+
+.euca-login-footer svg {
+    width: 22px;
+    height: 22px;
+}
+
+.euca-alert-danger {
+    background: rgba(184, 92, 74, .12);
+    border: 1px solid rgba(184, 92, 74, .35);
+    color: #ffb5a8;
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+}
+
+@media (max-width: 992px) {
+    body.euca-login-page {
+        overflow: auto;
+    }
+
+    .euca-login-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .euca-login-hero {
+        min-height: 340px;
+    }
+
+    .euca-login-panel {
+        padding: 42px 24px;
+    }
+
+    .euca-login-panel::before {
+        display: none;
+    }
+}
+/* =========================================================
+   EUCABANAS LOGIN - RESPONSIVO
+========================================================= */
+
+@media (max-width: 1200px) {
+    .euca-login-wrapper {
+        grid-template-columns: 45% 55%;
+    }
+
+    .euca-login-panel {
+        padding: 40px 48px;
+    }
+
+    .euca-login-card {
+        max-width: 480px;
+    }
+}
+
+@media (max-width: 992px) {
+    body.euca-login-page {
+        overflow: auto;
+    }
+
+    .euca-login-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .euca-login-hero {
+        min-height: 320px;
+        background-position: center;
+    }
+
+    .euca-login-panel {
+        min-height: auto;
+        padding: 42px 24px;
+    }
+
+    .euca-login-panel::before {
+        display: none;
+    }
+
+    .euca-login-card {
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 576px) {
+    .euca-login-hero {
+        min-height: 240px;
+    }
+
+    .euca-login-panel {
+        padding: 32px 18px;
+    }
+
+    .euca-login-logo {
+        width: 190px;
+        max-width: 80%;
+    }
+
+    .euca-login-header h1 {
+        font-size: 28px;
+        line-height: 1.15;
+    }
+
+    .euca-login-header p {
+        font-size: 14px;
+    }
+
+    .euca-form-group label {
+        font-size: 14px;
+    }
+
+    .euca-input-icon input {
+        height: 54px;
+        font-size: 14px;
+    }
+
+    .euca-login-options {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .euca-login-button,
+    .euca-login-secondary {
+        height: 54px;
+        font-size: 15px;
+    }
+
+    .euca-login-footer {
+        flex-wrap: wrap;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 380px) {
+    .euca-login-hero {
+        min-height: 200px;
+    }
+
+    .euca-login-panel {
+        padding: 24px 14px;
+    }
+
+    .euca-login-header h1 {
+        font-size: 24px;
+    }
+
+    .euca-login-logo {
+        width: 160px;
+    }
+}
+/* =========================================================
+   EUCABANAS ADMIN THEME
+========================================================= */
+
+:root {
+    --euca-bg: #0F0D0B;
+    --euca-surface: #181512;
+    --euca-wood: #2A211A;
+    --euca-gold: #C6A56B;
+    --euca-gold-light: #D8B97A;
+    --euca-text: #F5F1E8;
+    --euca-muted: #B8AA96;
+    --euca-border: rgba(198, 165, 107, .22);
+    --euca-danger: #B85C4A;
+    --euca-green: #1E2D24;
+}
+
+body.euca-admin-shell {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 10% 0%, rgba(198,165,107,.08), transparent 28%),
+        linear-gradient(135deg, #0F0D0B 0%, #181512 55%, #0F0D0B 100%);
+    color: var(--euca-text);
+}
+
+.euca-topbar {
+    min-height: 86px;
+    padding: 14px 34px;
+    background: rgba(15, 13, 11, .92);
+    border-bottom: 1px solid var(--euca-border);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+}
+
+.euca-brand img {
+    width: 170px;
+    max-height: 58px;
+    object-fit: contain;
+}
+
+.euca-nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.euca-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.euca-nav a {
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    color: var(--euca-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 600;
+    transition: .2s ease;
+    border: 1px solid transparent;
+}
+
+.euca-nav a svg {
+    width: 18px;
+    height: 18px;
+}
+
+.euca-nav a:hover {
+    color: var(--euca-text);
+    background: rgba(198,165,107,.08);
+    border-color: rgba(198,165,107,.18);
+}
+
+.euca-nav a.active {
+    color: #1A1208;
+    background: linear-gradient(135deg, var(--euca-gold), var(--euca-gold-light));
+    box-shadow: 0 12px 26px rgba(198,165,107,.16);
+}
+
+.euca-user-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.euca-user-copy {
+    text-align: right;
+    line-height: 1.1;
+}
+
+.euca-user-copy span {
+    display: block;
+    color: var(--euca-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.euca-user-copy strong {
+    color: var(--euca-text);
+    font-size: 14px;
+}
+
+.euca-logout {
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(198,165,107,.38);
+    background: transparent;
+    color: var(--euca-gold-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    transition: .2s ease;
+}
+
+.euca-logout:hover {
+    background: rgba(198,165,107,.10);
+    color: var(--euca-text);
+}
+
+.euca-logout svg {
+    width: 17px;
+    height: 17px;
+}
+
+.euca-mobile-toggle {
+    display: none;
+    margin-left: auto;
+    border: 1px solid var(--euca-border);
+    background: rgba(255,255,255,.04);
+    color: var(--euca-gold-light);
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+}
+
+.euca-main {
+    width: min(1440px, calc(100% - 48px));
+    margin: 28px auto 60px;
+}
+
+.euca-alert {
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    border: 1px solid var(--euca-border);
+}
+
+.euca-alert-success {
+    background: rgba(30, 45, 36, .72);
+    color: #d8f3dc;
+}
+
+.euca-alert-danger {
+    background: rgba(184, 92, 74, .16);
+    color: #ffb5a8;
+    border-color: rgba(184, 92, 74, .35);
+}
+
+/* Base para cards/tabelas do sistema */
+.card,
+.euca-card {
+    background: rgba(24, 21, 18, .92) !important;
+    border: 1px solid var(--euca-border) !important;
+    border-radius: 22px !important;
+    color: var(--euca-text) !important;
+    box-shadow: 0 22px 60px rgba(0,0,0,.28);
+}
+
+.card-header {
+    background: transparent !important;
+    border-bottom: 1px solid var(--euca-border) !important;
+    color: var(--euca-text) !important;
+}
+
+.card-body {
+    color: var(--euca-text) !important;
+}
+
+.table {
+    color: var(--euca-text) !important;
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(255,255,255,.025);
+    --bs-table-hover-bg: rgba(198,165,107,.06);
+    border-color: var(--euca-border) !important;
+}
+
+.table thead th {
+    color: var(--euca-gold-light) !important;
+    border-bottom: 1px solid var(--euca-border) !important;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: .06em;
+}
+
+.table td {
+    color: var(--euca-text) !important;
+    border-color: rgba(198,165,107,.12) !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--euca-gold), var(--euca-gold-light)) !important;
+    border: none !important;
+    color: #1A1208 !important;
+    font-weight: 700;
+}
+
+.btn-outline-danger {
+    border-color: var(--euca-danger) !important;
+    color: #ffb5a8 !important;
+}
+
+.btn-outline-danger:hover {
+    background: var(--euca-danger) !important;
+    color: #fff !important;
+}
+
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-light {
+    border-color: rgba(198,165,107,.38) !important;
+    color: var(--euca-gold-light) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover,
+.btn-outline-light:hover {
+    background: rgba(198,165,107,.12) !important;
+    color: var(--euca-text) !important;
+}
+
+.form-control,
+.form-select {
+    background: rgba(15,13,11,.72) !important;
+    border: 1px solid rgba(198,165,107,.24) !important;
+    color: var(--euca-text) !important;
+    border-radius: 12px !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--euca-gold) !important;
+    box-shadow: 0 0 0 4px rgba(198,165,107,.10) !important;
+}
+
+.form-control::placeholder {
+    color: rgba(245,241,232,.42) !important;
+}
+
+.badge {
+    border-radius: 999px;
+    padding: .45rem .7rem;
+}
+
+/* Responsivo */
+@media (max-width: 992px) {
+    .euca-topbar {
+        flex-wrap: wrap;
+        padding: 14px 18px;
+    }
+
+    .euca-mobile-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .euca-nav-wrapper {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+        padding-top: 16px;
+    }
+
+    .euca-nav {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .euca-nav a {
+        justify-content: flex-start;
+        border-radius: 14px;
+    }
+
+    .euca-user-area {
+        justify-content: space-between;
+    }
+
+    .euca-user-copy {
+        text-align: left;
+    }
+
+    .euca-main {
+        width: calc(100% - 28px);
+        margin-top: 18px;
+    }
+}

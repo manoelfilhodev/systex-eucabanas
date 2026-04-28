@@ -1,72 +1,95 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? 'Eucabanas Estoque | Systex' }}</title>
+    <title>{{ $title ?? 'EuCabanas | Sistema de Gestão' }}</title>
+
     <link rel="stylesheet" href="{{ asset('legacy-assets/assets/css/app-creative.min.css') }}">
     <link rel="stylesheet" href="{{ asset('legacy-assets/assets/css/icons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/eucabanas-admin.css') }}">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="systex-shell">
+
+<body class="euca-admin-shell">
     @php
         $navItems = [
-            ['label' => 'Dashboard', 'active' => 'dashboard', 'url' => route('dashboard')],
-            ['label' => 'Produtos', 'active' => 'products.*', 'url' => route('products.index')],
+            [
+                'label' => 'Dashboard',
+                'icon' => 'layout-dashboard',
+                'active' => 'dashboard',
+                'url' => route('dashboard'),
+            ],
+            ['label' => 'Produtos', 'icon' => 'package', 'active' => 'products.*', 'url' => route('products.index')],
         ];
 
         if (auth()->user()?->isAdmin()) {
             $navItems = array_merge($navItems, [
-                ['label' => 'Compras', 'active' => 'orders.*', 'url' => route('orders.index')],
-                ['label' => 'Usuários', 'active' => 'users.*', 'url' => route('users.index')],
-                ['label' => 'Log Sistema', 'active' => 'logs.*', 'url' => route('logs.index')],
+                [
+                    'label' => 'Compras',
+                    'icon' => 'shopping-cart',
+                    'active' => 'orders.*',
+                    'url' => route('orders.index'),
+                ],
+                ['label' => 'Usuários', 'icon' => 'users', 'active' => 'users.*', 'url' => route('users.index')],
+                ['label' => 'Log Sistema', 'icon' => 'file-clock', 'active' => 'logs.*', 'url' => route('logs.index')],
             ]);
         }
     @endphp
 
-    <nav class="navbar navbar-expand-lg navbar-dark systex-navbar">
-        <div class="container-fluid px-lg-4">
-            <a class="navbar-brand brand-lockup" href="{{ route('dashboard') }}" aria-label="Eucabanas Estoque">
-                <span class="brand-mark">SX</span>
-                <span>
-                    <span class="brand-title">Eucabanas Estoque</span>
-                    <span class="brand-subtitle">Systex Hospitality</span>
-                </span>
+    <nav class="euca-topbar">
+        <div class="euca-brand">
+            <a href="{{ route('dashboard') }}">
+                <img src="{{ asset('assets/images/eucabanas-logo.png') }}" alt="EuCabanas">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegação">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id="mainNav" class="collapse navbar-collapse">
-                <ul class="navbar-nav systex-nav mx-lg-auto">
-                    @foreach ($navItems as $item)
-                        <li class="nav-item">
-                            <a class="nav-link @if (request()->routeIs($item['active'])) active @endif" href="{{ $item['url'] }}">
-                                {{ $item['label'] }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-                <div class="operator-cluster">
-                    <div class="operator-copy">
-                        <span>Operação</span>
-                        <strong>{{ auth()->user()?->name ?? 'Systex' }}</strong>
-                    </div>
-                    <form method="post" action="{{ route('logout') }}">
-                        @csrf
-                        <button class="btn btn-outline-light btn-sm" type="submit">Sair</button>
-                    </form>
+        </div>
+
+        <button class="euca-mobile-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <i data-lucide="menu"></i>
+        </button>
+
+        <div id="mainNav" class="collapse navbar-collapse euca-nav-wrapper">
+            <ul class="euca-nav">
+                @foreach ($navItems as $item)
+                    <li>
+                        <a class="@if (request()->routeIs($item['active'])) active @endif" href="{{ $item['url'] }}">
+                            <i data-lucide="{{ $item['icon'] }}"></i>
+                            <span>{{ $item['label'] }}</span>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+
+            <div class="euca-user-area">
+                <div class="euca-user-copy">
+                    <span>Operação</span>
+                    <strong>{{ auth()->user()?->name ?? 'Systex' }}</strong>
                 </div>
+
+                <form method="post" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="euca-logout" type="submit">
+                        <i data-lucide="log-out"></i>
+                        Sair
+                    </button>
+                </form>
             </div>
         </div>
     </nav>
 
-    <main class="app-stage">
+    <main class="euca-main">
         @if (session('status'))
-            <div class="alert alert-success">{{ session('status') }}</div>
+            <div class="euca-alert euca-alert-success">
+                {{ session('status') }}
+            </div>
         @endif
 
         @if ($errors->any())
-            <div class="alert alert-danger">{{ $errors->first() }}</div>
+            <div class="euca-alert euca-alert-danger">
+                {{ $errors->first() }}
+            </div>
         @endif
 
         @yield('content')
@@ -74,5 +97,10 @@
 
     <script src="{{ asset('legacy-assets/assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('legacy-assets/assets/js/app.min.js') }}"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
+
 </html>
