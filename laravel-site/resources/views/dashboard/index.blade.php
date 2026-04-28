@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <h5 class="mt-4 text-white">Prioridade de compra</h5>
+                <h5 class="mt-4 text-white">Itens com saldo crítico</h5>
                 <div class="table-responsive priority-table">
                     <table class="table table-sm">
                         <thead><tr><th>Produto</th><th>Família</th><th>Qtde</th><th>Criticidade</th></tr></thead>
@@ -69,7 +69,7 @@
                                 <td><span class="badge {{ $product->purchaseStatusBadgeClass() }}">{{ $product->purchaseStatusLabel() }}</span></td>
                             </tr>
                         @empty
-                            <tr><td colspan="4">Nenhuma compra urgente no momento.</td></tr>
+                            <tr><td colspan="4">Nenhum item com saldo crítico no momento.</td></tr>
                         @endforelse
                         </tbody>
                     </table>

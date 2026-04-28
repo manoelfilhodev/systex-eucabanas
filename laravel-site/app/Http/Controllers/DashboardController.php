@@ -27,9 +27,8 @@ class DashboardController extends Controller
             'productsTotal' => $products->count(),
             'statusCounts' => $statusCounts,
             'purchaseProducts' => $products
-                ->filter(fn (Product $product): bool => $product->purchaseStatus() !== Product::STATUS_AVAILABLE)
-                ->sortBy([['prod_family', 'asc'], ['prod_qtde', 'asc']])
-                ->take(12),
+                ->filter(fn (Product $product): bool => $product->purchaseStatus() === Product::STATUS_CRITICAL)
+                ->sortBy([['prod_family', 'asc'], ['prod_qtde', 'asc'], ['prod_name', 'asc']]),
             'logs' => $user?->isAdmin() && Schema::hasTable('_tb_log')
                 ? SystemLog::query()->with('user')->orderByDesc('log_id')->limit(10)->get()
                 : collect(),
