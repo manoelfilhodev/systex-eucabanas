@@ -7,6 +7,7 @@ use App\Models\Legacy\Product;
 use App\Services\ActivityLogger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use Throwable;
 
 class ProductController extends Controller
 {
@@ -15,18 +16,28 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $search = trim((string) $request->query('search', ''));
+
         $products = Schema::hasTable('_tb_products')
             ? Product::query()
                 ->when(! $request->user()?->isAdmin(), fn ($query) => $query->where('prod_status', 'ATIVO'))
                 ->when($request->user()?->isAdmin() && $request->boolean('inactive'), fn ($query) => $query->where('prod_status', 'INATIVO'))
                 ->when($request->user()?->isAdmin() && ! $request->boolean('inactive'), fn ($query) => $query->where('prod_status', 'ATIVO'))
+                ->when($search !== '', function ($query) use ($search): void {
+                    $query->where(function ($query) use ($search): void {
+                        $query
+                            ->where('prod_name', 'like', "%{$search}%")
+                            ->orWhere('prod_family', 'like', "%{$search}%")
+                            ->orWhere('prod_desc', 'like', "%{$search}%");
+                    });
+                })
                 ->orderBy('prod_family')
                 ->orderBy('prod_name')
                 ->paginate(20)
                 ->withQueryString()
             : collect();
 
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products', 'search'));
     }
 
     /**
@@ -108,10 +119,21 @@ class ProductController extends Controller
         abort_unless($request->user()?->isAdmin(), 403);
 
         $product = Product::query()->findOrFail($id);
-        $product->update(['prod_status' => 'INATIVO']);
 
-        $logger->record('delete', 'PRODUTO INATIVADO '.$product->prod_name);
+        if ($product->prod_status !== 'ATIVO') {
+            return back()->withErrors(['product' => 'Este produto já está inativo e não pode ser excluído novamente.']);
+        }
 
-        return redirect()->route('products.index')->with('status', 'Produto inativado com sucesso.');
+        try {
+            $product->update(['prod_status' => 'INATIVO']);
+
+            $logger->record('delete', "ADMIN {$request->user()->name} EXCLUIU LOGICAMENTE O PRODUTO {$product->prod_name}");
+        } catch (Throwable) {
+            return back()->withErrors([
+                'product' => 'Não foi possível excluir o produto agora. Tente novamente ou acione o suporte.',
+            ]);
+        }
+
+        return redirect()->route('products.index')->with('status', 'Produto excluído com sucesso.');
     }
 }

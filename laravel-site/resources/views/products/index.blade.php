@@ -9,7 +9,7 @@
     </div>
     <div class="d-flex gap-2">
         @if (auth()->user()?->isAdmin())
-            <a class="btn btn-light" href="{{ route('products.index', ['inactive' => request()->boolean('inactive') ? 0 : 1]) }}">
+            <a class="btn btn-light" href="{{ route('products.index', ['inactive' => request()->boolean('inactive') ? 0 : 1, 'search' => $search]) }}">
                 {{ request()->boolean('inactive') ? 'Ver ativos' : 'Ver inativos' }}
             </a>
         @endif
@@ -19,6 +19,21 @@
 
 <div class="card">
     <div class="card-body">
+        <form method="get" action="{{ route('products.index') }}" class="mb-3">
+            @if (request()->boolean('inactive'))
+                <input type="hidden" name="inactive" value="1">
+            @endif
+            <div class="input-group">
+                <input class="form-control" name="search" value="{{ $search }}" placeholder="Pesquisar produtos">
+                <button class="btn btn-primary" type="submit" aria-label="Pesquisar produtos">
+                    <i data-lucide="search"></i>
+                </button>
+                @if ($search !== '')
+                    <a class="btn btn-light" href="{{ route('products.index', request()->boolean('inactive') ? ['inactive' => 1] : []) }}">Limpar</a>
+                @endif
+            </div>
+        </form>
+
         <div class="table-responsive">
             <table class="table table-striped align-middle">
             <thead>
@@ -59,10 +74,10 @@
                     <td class="text-end">
                         <a class="btn btn-sm btn-outline-primary" href="{{ route('products.edit', $product) }}">Editar</a>
                         @if (auth()->user()?->isAdmin() && $product->prod_status === 'ATIVO')
-                            <form class="d-inline" method="post" action="{{ route('products.destroy', $product) }}">
+                            <form class="d-inline" method="post" action="{{ route('products.destroy', $product) }}" onsubmit="return confirm('Tem certeza que deseja excluir este produto? Ele ficará inativo e será removido das listas operacionais.');">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-sm btn-outline-danger" type="submit">Inativar</button>
+                                <button class="btn btn-sm btn-outline-danger" type="submit">Excluir</button>
                             </form>
                         @endif
                     </td>
@@ -71,7 +86,7 @@
                 <tr>
                     <td colspan="10" class="text-center py-5">
                         <h5 class="mb-2">Nenhum produto encontrado</h5>
-                        <p class="text-muted mb-3">Cadastre o primeiro item para iniciar o controle diário de estoque.</p>
+                        <p class="text-muted mb-3">{{ $search !== '' ? 'Nenhum item corresponde à pesquisa informada.' : 'Cadastre o primeiro item para iniciar o controle diário de estoque.' }}</p>
                         <a class="btn btn-primary" href="{{ route('products.create') }}">Cadastrar produto</a>
                     </td>
                 </tr>

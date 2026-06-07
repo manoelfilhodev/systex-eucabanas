@@ -19,9 +19,10 @@ Route::middleware(['auth', 'legacy.active'])->group(function (): void {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
-    Route::resource('products', ProductController::class)->except(['show']);
+    Route::resource('products', ProductController::class)->except(['show', 'destroy']);
 
     Route::middleware('admin')->group(function (): void {
+        Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
         Route::get('/purchase-list/pdf', PurchaseListPdfController::class)->name('purchases.pdf');
         Route::resource('orders', OrderController::class)->except(['show']);
         Route::resource('users', UserController::class)->except(['show']);
