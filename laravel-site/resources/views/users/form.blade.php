@@ -38,6 +38,7 @@
             <select class="form-select" name="desc_nivel" required>
                 <option value="Usuario" @selected(old('desc_nivel', $legacyUser->desc_nivel ?: 'Usuario') === 'Usuario')>Usuário</option>
                 <option value="Administrador" @selected(old('desc_nivel', $legacyUser->desc_nivel) === 'Administrador')>Administrador</option>
+                <option value="Desenvolvedor" @selected(old('desc_nivel', $legacyUser->desc_nivel) === 'Desenvolvedor')>Desenvolvedor</option>
             </select>
         </div>
         <div class="col-md-6">

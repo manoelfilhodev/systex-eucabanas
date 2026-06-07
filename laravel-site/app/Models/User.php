@@ -40,9 +40,7 @@ class User extends Authenticatable
         return null;
     }
 
-    public function setRememberToken($value): void
-    {
-    }
+    public function setRememberToken($value): void {}
 
     public function getRememberTokenName(): string
     {
@@ -69,7 +67,7 @@ class User extends Authenticatable
         $level = strtolower((string) ($this->desc_nivel ?? $this->type_access ?? ''));
         $code = (string) ($this->cod_nivel ?? '');
 
-        return $code === '0' || str_contains($level, 'admin');
+        return $code === '0' || str_contains($level, 'admin') || str_contains($level, 'desenvolvedor');
     }
 
     protected function casts(): array

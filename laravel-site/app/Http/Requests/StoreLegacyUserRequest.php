@@ -29,14 +29,14 @@ class StoreLegacyUserRequest extends FormRequest
             'senha' => [$this->isMethod('post') ? 'required' : 'nullable', 'string', 'min:8', 'max:255'],
             'status' => ['nullable', 'in:ATIVO,INATIVO'],
             'unidade' => ['nullable', 'string', 'max:255'],
-            'desc_nivel' => ['required', Rule::in(['Administrador', 'Usuario'])],
+            'desc_nivel' => ['required', Rule::in(['Administrador', 'Desenvolvedor', 'Usuario'])],
         ];
     }
 
     protected function passedValidation(): void
     {
         $this->merge([
-            'cod_nivel' => $this->input('desc_nivel') === 'Administrador' ? '0' : '1',
+            'cod_nivel' => in_array($this->input('desc_nivel'), ['Administrador', 'Desenvolvedor'], true) ? '0' : '1',
         ]);
     }
 }
